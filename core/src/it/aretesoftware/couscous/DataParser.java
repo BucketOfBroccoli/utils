@@ -4,12 +4,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-public class DataParser {
+import it.aretesoftware.couscous.exceptions.DataParserException;
 
-    public static Object toObject(String value, Object defaultValue) {
-        Object obj = toObject(value);
-        return obj != null ? obj : defaultValue;
-    }
+public class DataParser {
 
     public static Object toObject(String value) {
         if (isColor(value)) {
@@ -27,13 +24,12 @@ public class DataParser {
         else if (isNumeric(value)) {
             return toNumber(value);
         }
-        return null;
+        return value;
     }
 
 
 
     public static boolean isNumeric(String value) {
-        if (value.isEmpty()) return false;
         return value.matches("(^(\\+|-)?)([0-9])*((\\.?[0-9]+)?(f|F|d|D)?)$");
     }
 
@@ -166,12 +162,6 @@ public class DataParser {
             }
         }
         return split;
-    }
-
-    private static class DataParserException extends RuntimeException {
-        public DataParserException (String message) {
-            super(message);
-        }
     }
 
 }

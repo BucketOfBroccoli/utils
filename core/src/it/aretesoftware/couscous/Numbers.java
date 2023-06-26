@@ -1,5 +1,7 @@
 package it.aretesoftware.couscous;
 
+import it.aretesoftware.couscous.exceptions.NumbersException;
+
 public class Numbers {
 
     public static float roundOffTo2DecPlaces(float value) {
@@ -82,6 +84,22 @@ public class Numbers {
         return min;
     }
 
+    public static float average(int... array) {
+        float sum = 0;
+        for (int value : array) {
+            sum += value;
+        }
+        return sum / array.length;
+    }
+
+    public static float average(float... array) {
+        float sum = 0;
+        for (float value : array) {
+            sum += value;
+        }
+        return sum / array.length;
+    }
+
     //
 
     private static void checkConditions(int... array) {
@@ -99,12 +117,6 @@ public class Numbers {
         }
         else if (array.length == 0) {
             throw new NumbersException("array is empty.");
-        }
-    }
-
-    private static class NumbersException extends RuntimeException {
-        public NumbersException(String message) {
-            super(message);
         }
     }
 
