@@ -1,7 +1,5 @@
 package it.aretesoftware.couscous;
 
-import it.aretesoftware.couscous.exceptions.NumbersException;
-
 public class Numbers {
 
     private Numbers() {
