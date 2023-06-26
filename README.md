@@ -19,7 +19,7 @@ Then add couscous as dependency in your core project:
 project(":core") {
     dependencies {
     	// ...
-        implementation 'com.github.aret3dev:couscous:0.1.0'
+        implementation 'com.github.AreteS0ftware:couscous:0.1.0'
     }
 }
 ```
