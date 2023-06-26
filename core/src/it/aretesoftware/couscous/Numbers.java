@@ -4,6 +4,10 @@ import it.aretesoftware.couscous.exceptions.NumbersException;
 
 public class Numbers {
 
+    private Numbers() {
+
+    }
+
     public static float roundOffTo2DecPlaces(float value) {
         return (float) (Math.round(value * 100.0) / 100.0);
     }

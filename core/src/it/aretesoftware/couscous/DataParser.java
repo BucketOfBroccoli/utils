@@ -8,6 +8,10 @@ import it.aretesoftware.couscous.exceptions.DataParserException;
 
 public class DataParser {
 
+    private DataParser() {
+
+    }
+
     public static Object toObject(String value) {
         if (isColor(value)) {
             return toColor(value);

@@ -3,6 +3,10 @@ package it.aretesoftware.couscous;
 @SuppressWarnings("All")
 public class Strings {
 
+    private Strings() {
+
+    }
+
     public static String upperCaseFirstCharacter(String value) {
         if (isNullOrEmpty(value)) return value;
         StringBuilder builder = new StringBuilder();
