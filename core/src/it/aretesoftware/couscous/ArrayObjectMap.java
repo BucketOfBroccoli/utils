@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.ObjectMap;
 /**
  * Identical to the {@link ObjectMap}; the only difference is that
  * the values are {@link Array<V>}s of objects.
- * @author 4r3t-3 */
+ * @author AreteS0ftware */
 public class ArrayObjectMap<K, V> extends ObjectMap<K, Array<V>> {
 
     public Array<V> add(K key, V value) {

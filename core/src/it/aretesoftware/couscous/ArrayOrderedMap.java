@@ -7,7 +7,7 @@ import com.badlogic.gdx.utils.OrderedMap;
 /**
  * Identical to the {@link OrderedMap}; the only difference is that
  * the values are {@link Array<V>}s of objects.
- * @author 4r3t-3 */
+ * @author AreteS0ftware */
 public class ArrayOrderedMap<K, V> extends OrderedMap<K, Array<V>> {
 
     public Array<V> add(K key, V value) {
