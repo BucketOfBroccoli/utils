@@ -240,7 +240,7 @@ public class Data {
         if (split.length != arrayLengthAllowed) {
             return false;
         }
-        final String floatRegex = "^([0-9])*\\.?([0-9]+)?$";
+        final String floatRegex = "^(\\+|-)?([0-9])*\\.?([0-9]+)?$";
         for (String number : split) {
             if (!number.matches(floatRegex)) {
                 return false;
@@ -254,7 +254,7 @@ public class Data {
         if (split.length != arrayLengthAllowed) {
             throw new DataException(arrayLengthErrorMessage);
         }
-        final String floatRegex = "^([0-9])*\\.?([0-9]+)?$";
+        final String floatRegex = "^(\\+|-)?([0-9])*\\.?([0-9]+)?$";
         for (String number : split) {
             if (!number.matches(floatRegex)) {
                 throw new DataException(notNumericErrorMessage);
