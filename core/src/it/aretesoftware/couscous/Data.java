@@ -3,7 +3,6 @@ package it.aretesoftware.couscous;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.NumberUtils;
 
 public class Data {
 
@@ -152,15 +151,19 @@ public class Data {
         return new Color(r, g, b, a);
     }
 
-    public static String toString(Color value) {
+    public static String toString(Color color) {
+        return toColorString(color.r, color.g, color.b, color.a);
+    }
+
+    public static String toColorString(float r, float g, float b, float a) {
         StringBuilder builder = new StringBuilder();
-        builder.append(value.r);
+        builder.append(r);
         builder.append(" ");
-        builder.append(value.g);
+        builder.append(g);
         builder.append(" ");
-        builder.append(value.b);
+        builder.append(b);
         builder.append(" ");
-        builder.append(value.a);
+        builder.append(a);
         return builder.toString();
     }
 
@@ -185,13 +188,17 @@ public class Data {
         return new Vector3(x, y, z);
     }
 
-    public static String toString(Vector3 value) {
+    public static String toString(Vector3 vec3) {
+        return toVector3String(vec3.x, vec3.y, vec3.z);
+    }
+
+    public static String toVector3String(float x, float y, float z) {
         StringBuilder builder = new StringBuilder();
-        builder.append(value.x);
+        builder.append(x);
         builder.append(" ");
-        builder.append(value.y);
+        builder.append(y);
         builder.append(" ");
-        builder.append(value.z);
+        builder.append(z);
         return builder.toString();
     }
 
@@ -214,11 +221,15 @@ public class Data {
         return new Vector2(x, y);
     }
 
-    public static String toString(Vector2 value) {
+    public static String toString(Vector2 vec2) {
+        return toVector2String(vec2.x, vec2.y);
+    }
+
+    public static String toVector2String(float x, float y) {
         StringBuilder builder = new StringBuilder();
-        builder.append(value.x);
+        builder.append(x);
         builder.append(" ");
-        builder.append(value.y);
+        builder.append(y);
         return builder.toString();
     }
 
