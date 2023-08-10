@@ -1,7 +1,6 @@
 package it.aretesoftware.couscous;
 
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.OrderedMap;
 
 /**
@@ -22,7 +21,6 @@ public class ArrayOrderedMap<K, V> extends OrderedMap<K, Array<V>> {
         return super.put(key, array);
     }
 
-    @SafeVarargs
     public final Array<V> addAll(K key, V... value) {
         Array<V> array = getArray(key);
         array.addAll(value);

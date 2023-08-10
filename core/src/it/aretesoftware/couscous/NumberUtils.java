@@ -1,8 +1,11 @@
 package it.aretesoftware.couscous;
 
-public class Numbers {
+/**
+ * Various methods for easier handling of numbers.
+ * @author AreteS0ftware */
+public class NumberUtils {
 
-    private Numbers() {
+    private NumberUtils() {
 
     }
 
@@ -22,28 +25,8 @@ public class Numbers {
         return (float) (Math.round(value * 1000.0) / 1000.0);
     }
 
-    //
-
-    public static int roundUp(float value) {
-        return (int) Math.ceil(value);
-    }
-
-    public static int roundUp(double value) {
-        return (int) Math.ceil(value);
-    }
-
-    public static int roundDown(float value) {
-        return (int) Math.floor(value);
-    }
-
-    public static int roundDown(double value) {
-        return (int) Math.floor(value);
-    }
-
-    //
-
     public static int max(int... array) {
-        checkConditions(array);
+        checkConditions((Object) array);
         int max = Integer.MIN_VALUE;
         for (int value : array) {
             if (value > max) {
@@ -54,7 +37,7 @@ public class Numbers {
     }
 
     public static int min(int... array) {
-        checkConditions(array);
+        checkConditions((Object) array);
         int min = Integer.MAX_VALUE;
         for (int value : array) {
             if (value < min) {
@@ -65,7 +48,7 @@ public class Numbers {
     }
 
     public static float max(float... array) {
-        checkConditions(array);
+        checkConditions((Object) array);
         float max = Float.MIN_VALUE;
         for (float value : array) {
             if (value > max) {
@@ -76,7 +59,7 @@ public class Numbers {
     }
 
     public static float min(float... array) {
-        checkConditions(array);
+        checkConditions((Object) array);
         float min = Float.MAX_VALUE;
         for (float value : array) {
             if (value < min) {
@@ -102,23 +85,12 @@ public class Numbers {
         return sum / array.length;
     }
 
-    //
-
-    private static void checkConditions(int... array) {
+    private static void checkConditions(Object... array) {
         if (array == null) {
-            throw new NumbersException("array is null.");
+            throw new NumberUtilsException("array is null.");
         }
         else if (array.length == 0) {
-            throw new NumbersException("array is empty.");
-        }
-    }
-
-    private static void checkConditions(float... array) {
-        if (array == null) {
-            throw new NumbersException("array is null.");
-        }
-        else if (array.length == 0) {
-            throw new NumbersException("array is empty.");
+            throw new NumberUtilsException("array is empty.");
         }
     }
 

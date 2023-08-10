@@ -21,7 +21,6 @@ public class ArrayObjectMap<K, V> extends ObjectMap<K, Array<V>> {
         return super.put(key, array);
     }
 
-    @SafeVarargs
     public final Array<V> addAll(K key, V... value) {
         Array<V> array = getArray(key);
         array.addAll(value);

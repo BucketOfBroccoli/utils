@@ -4,9 +4,18 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
-public class Data {
+/**
+ * Various methods for parsing from/to strings/objects and vice versa.
+ * @author AreteS0ftware */
+public class ParseUtils {
 
-    private Data() {
+    public static final String DECIMAL_REGEX = "^(\\+|-)?([0-9])*\\.{1}([0-9]+)?(f|F|d|D)?$";
+    public static final String INTEGER_REGEX = "^(\\+|-)?([0-9]+)$";
+    public static final String HEXADECIMAL_REGEX = "(#|0x|0X)?[0-9a-fA-F]+$";
+    public static final String WHITESPACE_REGEX = "[ \\t\\n]+";
+    public static final String TRAILLESS_NUMBER_REGEX = "^(\\+|-)?([0-9])*\\.?([0-9]+)?$";
+
+    private ParseUtils() {
 
     }
 
@@ -48,13 +57,26 @@ public class Data {
         return object.toString();    // Hexadecimal numbers stay as they are
     }
 
+    public static boolean isDecimal(String value) {
+        // Float & Double
+        return value.matches(DECIMAL_REGEX);
+    }
 
+    public static boolean isInteger(String value) {
+        // Long & Integer
+        return value.matches(INTEGER_REGEX);
+    }
+
+    public static boolean isHexadecimal(String value) {
+        // Hexadecimal
+        return value.matches(HEXADECIMAL_REGEX);
+    }
 
     public static boolean isNumeric(String value) {
         value = value.trim();
-        boolean isNumeric = value.matches("^(\\+|-)?([0-9])*\\.{1}([0-9]+)?(f|F|d|D)?$"); // Float & Double
-        if (!isNumeric) isNumeric = value.matches("^(\\+|-)?([0-9]+)(l|L)?$");  // Integer & Long
-        if (!isNumeric) isNumeric = value.matches("(#|0x|0X)?[0-9a-fA-F]+$");   // Hexadecimal Integer
+        boolean isNumeric = isDecimal(value);
+        if (!isNumeric) isNumeric = isInteger(value);
+        if (!isNumeric) isNumeric = isHexadecimal(value);
         return isNumeric;
     }
 
@@ -63,8 +85,7 @@ public class Data {
     }
 
     public static Number toNumber(String value) {
-        if (!isNumeric(value)) throw new DataException("'" + value + "' is not a number.");
-        if (value.contains(".")) {
+        if (isDecimal(value)) {
             if (value.endsWith("f") || value.endsWith("F")) {
                 return Float.parseFloat(value);
             }
@@ -73,19 +94,15 @@ public class Data {
             }
             return Float.parseFloat(value);
         }
-        else {
-            if (value.endsWith("f") || value.endsWith("F")) {
-                return Float.parseFloat(value);
-            }
-            else if (value.endsWith("d") || value.endsWith("D")) {
-                return Double.parseDouble(value);
-            }
-            else if (value.endsWith("l") || value.endsWith("L")) {
-                // Long.parseLong() does not accept the trailing L
-                return Long.parseLong(value.substring(0, value.length() - 1));
-            }
+        else if (isInteger(value)) {
+            return Integer.parseInt(value);
         }
-        return Integer.decode(value);   //decode() checks for hexadecimal numbers
+        else if (isHexadecimal(value)) {
+            return Integer.decode(value);
+        }
+        else {
+            throw new ParseUtilsException("'" + value + "' is not a number.");
+        }
     }
 
     public static String toString(Number number) {
@@ -103,9 +120,6 @@ public class Data {
         }
         return number.toString();   // Hexadecimal numbers stay as they are
     }
-
-
-
 
     public static boolean isBoolean(String value) {
         value = value.trim();
@@ -125,11 +139,9 @@ public class Data {
             return false;
         }
         else {
-            throw new DataException("'" + value + "' is not a boolean.");
+            throw new ParseUtilsException("'" + value + "' is not a boolean.");
         }
     }
-
-
 
     public static boolean isColor(String value) {
         return isValid(value, 4);
@@ -167,8 +179,6 @@ public class Data {
         return builder.toString();
     }
 
-
-
     public static boolean isVector3(String value) {
         return isValid(value, 3);
     }
@@ -202,7 +212,6 @@ public class Data {
         return builder.toString();
     }
 
-
     public static boolean isVector2(String value) {
         return isValid(value, 2);
     }
@@ -233,31 +242,27 @@ public class Data {
         return builder.toString();
     }
 
-    //
-
     private static boolean isValid(String value, int arrayLengthAllowed) {
-        String[] split = value.trim().split(" +");
+        String[] split = value.trim().split(WHITESPACE_REGEX);
         if (split.length != arrayLengthAllowed) {
             return false;
         }
-        final String floatRegex = "^(\\+|-)?([0-9])*\\.?([0-9]+)?$";
         for (String number : split) {
-            if (!number.matches(floatRegex)) {
+            if (!number.matches(TRAILLESS_NUMBER_REGEX)) {
                 return false;
             }
         }
         return true;
     }
 
-    private static String[] checkConditions(String value, int arrayLengthAllowed, String arrayLengthErrorMessage, String notNumericErrorMessage) throws DataException {
-        String[] split = value.trim().split(" +");
+    private static String[] checkConditions(String value, int arrayLengthAllowed, String arrayLengthErrorMessage, String notNumericErrorMessage) throws ParseUtilsException {
+        String[] split = value.trim().split(WHITESPACE_REGEX);
         if (split.length != arrayLengthAllowed) {
-            throw new DataException(arrayLengthErrorMessage);
+            throw new ParseUtilsException(arrayLengthErrorMessage);
         }
-        final String floatRegex = "^(\\+|-)?([0-9])*\\.?([0-9]+)?$";
         for (String number : split) {
-            if (!number.matches(floatRegex)) {
-                throw new DataException(notNumericErrorMessage);
+            if (!number.matches(TRAILLESS_NUMBER_REGEX)) {
+                throw new ParseUtilsException(notNumericErrorMessage);
             }
         }
         return split;

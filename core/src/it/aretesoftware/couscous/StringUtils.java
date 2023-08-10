@@ -1,13 +1,18 @@
 package it.aretesoftware.couscous;
 
-@SuppressWarnings("All")
-public class Strings {
+import java.util.Arrays;
+import java.util.Iterator;
 
-    private Strings() {
+/**
+ * Various methods for easier handling of strings.
+ * @author AreteS0ftware */
+public class StringUtils {
+
+    private StringUtils() {
 
     }
 
-    public static String upperCaseFirstCharacter(String value) {
+    public static String capitalizeFirstCharacter(String value) {
         if (isNullOrEmpty(value)) return value;
         StringBuilder builder = new StringBuilder();
         builder.append(Character.toUpperCase(value.charAt(0)));
@@ -15,15 +20,13 @@ public class Strings {
         return builder.toString();
     }
 
-    public static String lowerCaseFirstCharacter(String value) {
+    public static String uncapitalizeFirstCharacter(String value) {
         if (isNullOrEmpty(value)) return value;
         StringBuilder builder = new StringBuilder();
         builder.append(Character.toLowerCase(value.charAt(0)));
         builder.append(value.substring(1));
         return builder.toString();
     }
-
-    //
 
     public static String surroundWithDoubleQuotes(String value) {
         return surround(value, "\"", "\"");
@@ -61,48 +64,46 @@ public class Strings {
         return builder.toString();
     }
 
-    //
-
-    public static String join(char separator, String... values) {
-        return join(String.valueOf(separator), values);
+    public static String join(String[] values, char separator) {
+        return join(Arrays.asList(values), String.valueOf(separator));
     }
 
-    public static String join(String separator, String... values) {
-        StringBuilder builder = new StringBuilder();
-        for (int index = 0; index < values.length; index++) {
-            String value = values[index];
-            builder.append(value);
-            if (index < values.length - 1) {
-                builder.append(separator);
+    public static String join(String[] values, String separator) {
+        return join(Arrays.asList(values), separator);
+    }
+
+    public static String join(Iterable<String> pieces, String separator) {
+        StringBuilder buffer = new StringBuilder();
+        Iterator<String> iter = pieces.iterator();
+        while (iter.hasNext()) {
+            buffer.append(iter.next());
+            if (iter.hasNext()) {
+                buffer.append(separator);
             }
         }
-        return builder.toString();
+        return buffer.toString();
     }
 
-    //
-
-    public static int countCharacter(String value, char characterToCount) {
+    public static int countCharacter(String value, char character) {
         int counter = 0;
-        for (char character : value.toCharArray()) {
-            if (character == characterToCount) {
+        for (char c : value.toCharArray()) {
+            if (character == c) {
                 counter++;
             }
         }
         return counter;
     }
 
-    public static int countCharacterIgnoreCase(String value, char characterToCount) {
+    public static int countCharacterIgnoreCase(String value, char character) {
         int counter = 0;
-        for (char character : value.toCharArray()) {
-            if (Character.toUpperCase(character) == characterToCount
-                || Character.toLowerCase(character) == characterToCount) {
+        for (char c : value.toCharArray()) {
+            if (Character.toUpperCase(c) == character
+                    || Character.toLowerCase(c) == character) {
                 counter++;
             }
         }
         return counter;
     }
-
-    //
 
     public static boolean isNullOrEmpty(String value) {
         return value == null || value.isEmpty();
