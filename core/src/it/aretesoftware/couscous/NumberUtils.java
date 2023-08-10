@@ -26,7 +26,7 @@ public class NumberUtils {
     }
 
     public static int max(int... array) {
-        checkConditions((Object) array);
+        checkConditions(array);
         int max = Integer.MIN_VALUE;
         for (int value : array) {
             if (value > max) {
@@ -37,7 +37,7 @@ public class NumberUtils {
     }
 
     public static int min(int... array) {
-        checkConditions((Object) array);
+        checkConditions(array);
         int min = Integer.MAX_VALUE;
         for (int value : array) {
             if (value < min) {
@@ -48,7 +48,7 @@ public class NumberUtils {
     }
 
     public static float max(float... array) {
-        checkConditions((Object) array);
+        checkConditions(array);
         float max = Float.MIN_VALUE;
         for (float value : array) {
             if (value > max) {
@@ -59,7 +59,7 @@ public class NumberUtils {
     }
 
     public static float min(float... array) {
-        checkConditions((Object) array);
+        checkConditions(array);
         float min = Float.MAX_VALUE;
         for (float value : array) {
             if (value < min) {
@@ -85,7 +85,16 @@ public class NumberUtils {
         return sum / array.length;
     }
 
-    private static void checkConditions(Object... array) {
+    private static void checkConditions(int... array) {
+        if (array == null) {
+            throw new NumberUtilsException("array is null.");
+        }
+        else if (array.length == 0) {
+            throw new NumberUtilsException("array is empty.");
+        }
+    }
+
+    private static void checkConditions(float... array) {
         if (array == null) {
             throw new NumberUtilsException("array is null.");
         }
