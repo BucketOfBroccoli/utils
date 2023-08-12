@@ -247,4 +247,10 @@ public class ParseUtils {
         return split;
     }
 
+    static class ParseUtilsException extends RuntimeException {
+        ParseUtilsException(String message) {
+            super(message);
+        }
+    }
+
 }

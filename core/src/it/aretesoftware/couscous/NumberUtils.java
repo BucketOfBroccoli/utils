@@ -132,4 +132,10 @@ public class NumberUtils {
         return isNumeric;
     }
 
+    static class NumberUtilsException extends RuntimeException {
+        NumberUtilsException(String message) {
+            super(message);
+        }
+    }
+
 }
