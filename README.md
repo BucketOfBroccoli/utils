@@ -5,12 +5,12 @@
 
 A tiny collection of some common utilities for Java, with no dependencies.
 
-## Features
+### Features
 
 * [NumberUtils](https://github.com/AreteS0ftware/couscous/blob/main/src/main/java/it/aretesoftware/couscous/NumberUtils.java): contains utilities for dealing with numbers
 * [StringUtils](https://github.com/AreteS0ftware/couscous/blob/main/src/main/java/it/aretesoftware/couscous/StringUtils.java): contains utilities for dealing with strings
 
-## Install
+### Install
 couscous is available via JitPack. Make sure you have JitPack declared as a repository in your root <code>build.gradle</code> file:
 
 ```
