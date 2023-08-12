@@ -6,6 +6,33 @@ import it.aretesoftware.couscous.NumberUtils;
 public class NumberUtilsTest {
 
     @Test
+    public void isNumber() {
+        // Float & Double
+        Assert.assertTrue(NumberUtils.isNumber("0.1"));
+        Assert.assertTrue(NumberUtils.isNumber("0.1f"));
+        Assert.assertTrue(NumberUtils.isNumber(".1f"));
+        Assert.assertTrue(NumberUtils.isNumber("0.f"));
+        Assert.assertTrue(NumberUtils.isNumber("0.2d"));
+        Assert.assertTrue(NumberUtils.isNumber("0.d"));
+        Assert.assertTrue(NumberUtils.isNumber(".2d"));
+
+        // Integer & Long
+        Assert.assertTrue(NumberUtils.isNumber("0"));
+        Assert.assertTrue(NumberUtils.isNumber("999"));
+        Assert.assertTrue(NumberUtils.isNumber("-1"));
+        Assert.assertTrue(NumberUtils.isNumber("+1"));
+
+        // Hexadecimal Integers
+        Assert.assertTrue(NumberUtils.isNumber("#8009"));
+        Assert.assertTrue(NumberUtils.isNumber("0x8009"));
+        Assert.assertTrue(NumberUtils.isNumber("#0DE1"));
+        Assert.assertTrue(NumberUtils.isNumber("0x0DE1"));
+        Assert.assertFalse(NumberUtils.isNumber("#0x8009"));
+        Assert.assertFalse(NumberUtils.isNumber("0x#8009"));
+        Assert.assertFalse(NumberUtils.isNumber("8009z"));
+    }
+
+    @Test
     public void roundOffTo2DecPlaces() {
         Assert.assertEquals(NumberUtils.roundOffTo2DecPlaces(0.123456789f), 0.12f, 0f);
         Assert.assertEquals(NumberUtils.roundOffTo2DecPlaces(0.123456789d), 0.12f, 0f);

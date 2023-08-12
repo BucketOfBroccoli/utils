@@ -48,33 +48,6 @@ public class ParseUtilsTest {
     }
 
     @Test
-    public void isNumeric() {
-        // Float & Double
-        Assert.assertTrue(ParseUtils.isNumeric("0.1"));
-        Assert.assertTrue(ParseUtils.isNumeric("0.1f"));
-        Assert.assertTrue(ParseUtils.isNumeric(".1f"));
-        Assert.assertTrue(ParseUtils.isNumeric("0.f"));
-        Assert.assertTrue(ParseUtils.isNumeric("0.2d"));
-        Assert.assertTrue(ParseUtils.isNumeric("0.d"));
-        Assert.assertTrue(ParseUtils.isNumeric(".2d"));
-
-        // Integer & Long
-        Assert.assertTrue(ParseUtils.isNumeric("0"));
-        Assert.assertTrue(ParseUtils.isNumeric("999"));
-        Assert.assertTrue(ParseUtils.isNumeric("-1"));
-        Assert.assertTrue(ParseUtils.isNumeric("+1"));
-
-        // Hexadecimal Integers
-        Assert.assertTrue(ParseUtils.isNumeric("#8009"));
-        Assert.assertTrue(ParseUtils.isNumeric("0x8009"));
-        Assert.assertTrue(ParseUtils.isNumeric("#0DE1"));
-        Assert.assertTrue(ParseUtils.isNumeric("0x0DE1"));
-        Assert.assertFalse(ParseUtils.isNumeric("#0x8009"));
-        Assert.assertFalse(ParseUtils.isNumeric("0x#8009"));
-        Assert.assertFalse(ParseUtils.isNumeric("8009z"));
-    }
-
-    @Test
     public void toNumber() {
         // Float & Double
         final float delta = 0.00000001f;

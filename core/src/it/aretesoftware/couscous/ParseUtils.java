@@ -1,5 +1,10 @@
 package it.aretesoftware.couscous;
 
+import static it.aretesoftware.couscous.NumberUtils.isDecimal;
+import static it.aretesoftware.couscous.NumberUtils.isHexadecimal;
+import static it.aretesoftware.couscous.NumberUtils.isInteger;
+import static it.aretesoftware.couscous.NumberUtils.isNumber;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -9,11 +14,8 @@ import com.badlogic.gdx.math.Vector3;
  * @author AreteS0ftware */
 public class ParseUtils {
 
-    public static final String DECIMAL_REGEX = "^(\\+|-)?([0-9])*\\.{1}([0-9]+)?(f|F|d|D)?$";
-    public static final String INTEGER_REGEX = "^(\\+|-)?([0-9]+)$";
-    public static final String HEXADECIMAL_REGEX = "(#|0x|0X)?[0-9a-fA-F]+$";
     public static final String WHITESPACE_REGEX = "[ \\t\\n]+";
-    public static final String TRAILLESS_NUMBER_REGEX = "^(\\+|-)?([0-9])*\\.?([0-9]+)?$";
+    private static final String TRAILLESS_NUMBER_REGEX = "^(\\+|-)?([0-9])*\\.?([0-9]+)?$";
 
     private ParseUtils() {
 
@@ -32,7 +34,7 @@ public class ParseUtils {
         else if (isBoolean(value)) {
             return Boolean.parseBoolean(value);
         }
-        else if (isNumeric(value)) {
+        else if (isNumber(value)) {
             return toNumber(value);
         }
         return value;
@@ -57,31 +59,8 @@ public class ParseUtils {
         return object.toString();    // Hexadecimal numbers stay as they are
     }
 
-    public static boolean isDecimal(String value) {
-        // Float & Double
-        return value.matches(DECIMAL_REGEX);
-    }
-
-    public static boolean isInteger(String value) {
-        // Long & Integer
-        return value.matches(INTEGER_REGEX);
-    }
-
-    public static boolean isHexadecimal(String value) {
-        // Hexadecimal
-        return value.matches(HEXADECIMAL_REGEX);
-    }
-
-    public static boolean isNumeric(String value) {
-        value = value.trim();
-        boolean isNumeric = isDecimal(value);
-        if (!isNumeric) isNumeric = isInteger(value);
-        if (!isNumeric) isNumeric = isHexadecimal(value);
-        return isNumeric;
-    }
-
     public static Number toNumber(String value, Number defaultValue) {
-        return isNumeric(value) ? toNumber(value) : defaultValue;
+        return isNumber(value) ? toNumber(value) : defaultValue;
     }
 
     public static Number toNumber(String value) {

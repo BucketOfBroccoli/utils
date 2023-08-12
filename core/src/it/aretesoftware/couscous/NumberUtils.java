@@ -5,6 +5,12 @@ package it.aretesoftware.couscous;
  * @author AreteS0ftware */
 public class NumberUtils {
 
+    public static final String DECIMAL_REGEX = "^(\\+|-)?([0-9])*\\.{1}([0-9]+)?(f|F|d|D)?$";
+    public static final String INTEGER_REGEX = "^(\\+|-)?([0-9]+)$";
+    public static final String HEXADECIMAL_REGEX = "(#|0x|0X)?[0-9a-fA-F]+$";
+    public static final String WHITESPACE_REGEX = "[ \\t\\n]+";
+    public static final String TRAILLESS_NUMBER_REGEX = "^(\\+|-)?([0-9])*\\.?([0-9]+)?$";
+
     private NumberUtils() {
 
     }
@@ -101,6 +107,29 @@ public class NumberUtils {
         else if (array.length == 0) {
             throw new NumberUtilsException("array is empty.");
         }
+    }
+
+    public static boolean isDecimal(String value) {
+        // Float & Double
+        return value.matches(DECIMAL_REGEX);
+    }
+
+    public static boolean isInteger(String value) {
+        // Long & Integer
+        return value.matches(INTEGER_REGEX);
+    }
+
+    public static boolean isHexadecimal(String value) {
+        // Hexadecimal
+        return value.matches(HEXADECIMAL_REGEX);
+    }
+
+    public static boolean isNumber(String value) {
+        value = value.trim();
+        boolean isNumeric = isDecimal(value);
+        if (!isNumeric) isNumeric = isInteger(value);
+        if (!isNumeric) isNumeric = isHexadecimal(value);
+        return isNumeric;
     }
 
 }
