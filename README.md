@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Versioning](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org/)
 
-A tiny collection of some common utilities for Java. Zero dependencies.
+A tiny collection of some common utilities for Java, with no dependencies.
 
 ## Features
 
