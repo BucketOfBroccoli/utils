@@ -10,6 +10,27 @@ A tiny collection of some common utilities for Java, with no dependencies.
 * [NumberUtils](https://github.com/AreteS0ftware/couscous/blob/main/src/main/java/it/aretesoftware/couscous/NumberUtils.java): contains utilities for dealing with numbers
 * [StringUtils](https://github.com/AreteS0ftware/couscous/blob/main/src/main/java/it/aretesoftware/couscous/StringUtils.java): contains utilities for dealing with strings
 
+## Install
+couscous is available via JitPack. Make sure you have JitPack declared as a repository in your root <code>build.gradle</code> file:
+
+```
+allprojects {
+    repositories {
+        // ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+Then add gdx-quadtree as dependency in your core project:
+```
+project(":core") {
+    dependencies {
+    	// ...
+        implementation 'com.github.AreteS0ftware:couscous:1.0.0'
+    }
+}
+```
+
 <hr>
 
 ### Contact
