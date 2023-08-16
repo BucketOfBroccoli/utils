@@ -30,6 +30,18 @@ public class NumberUtilsTest {
         Assert.assertFalse(NumberUtils.isNumber("#0x8009"));
         Assert.assertFalse(NumberUtils.isNumber("0x#8009"));
         Assert.assertFalse(NumberUtils.isNumber("8009z"));
+
+        // Scientific Notation
+        Assert.assertTrue(NumberUtils.isNumber("1.2846202978398e+19"));
+        Assert.assertTrue(NumberUtils.isNumber("1e3"));
+        Assert.assertTrue(NumberUtils.isNumber("100e5"));
+        Assert.assertTrue(NumberUtils.isNumber("-1.2846202978398e+19"));
+        Assert.assertTrue(NumberUtils.isNumber("+1e3"));
+        Assert.assertTrue(NumberUtils.isNumber("-100e5"));
+        Assert.assertTrue(NumberUtils.isNumber("1.57e3f"));
+        Assert.assertTrue(NumberUtils.isNumber("1.57e3F"));
+        Assert.assertTrue(NumberUtils.isNumber("1.57e3d"));
+        Assert.assertTrue(NumberUtils.isNumber("1.57e3D"));
     }
 
     @Test
