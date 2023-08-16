@@ -26,7 +26,7 @@ Then add gdx-quadtree as dependency in your core project:
 project(":core") {
     dependencies {
     	// ...
-        implementation 'com.github.AreteS0ftware:couscous:1.0.0'
+        implementation 'com.github.AreteS0ftware:couscous:1.1.0'
     }
 }
 ```
