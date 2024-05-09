@@ -36,13 +36,17 @@ public class NumberUtils {
     }
 
     private static float getRoundingDivisor(int places) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("1");
-        for (int i = 0; i < places; i++) {
-            builder.append("0");
+        if (places < 0) {
+            throw new NumberUtilsException("Number of decimal places for rounding off a number must be positive.");
         }
-        builder.append(".0");
-        return Float.parseFloat(builder.toString());
+        else if (places == 0) {
+            return 1;
+        }
+        else {
+            return Float.parseFloat(
+                    String.format("1%0" + places + "d", 0)
+            );
+        }
     }
 
     public static int max(int... array) {

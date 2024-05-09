@@ -216,6 +216,8 @@ public class NumberUtilsTest {
 
     @Test
     public void roundOff() {
+        Assert.assertEquals(NumberUtils.roundOff(1.123f, 0), 1f, 0f);
+
         Assert.assertEquals(NumberUtils.roundOff(1.123456789f, 2), 1.12f, 0f);
 
         Assert.assertEquals(NumberUtils.roundOff(0.123456789f, 2), 0.12f, 0f);
