@@ -4,27 +4,41 @@ import java.util.Arrays;
 import java.util.Iterator;
 
 /**
- * Various methods for easier handling of strings.
- * @author AreteS0ftware */
+ * Various methods for handling strings.
+ * @author Arete */
 public class StringUtils {
 
     private StringUtils() {
 
     }
 
-    public static String capitalizeFirstCharacter(String value) {
+    public static String upperCaseFirstCharacter(String value) {
+        return upperCaseCharacter(value, 0);
+    }
+
+    public static String lowerCaseFirstCharacter(String value) {
+        return lowerCaseCharacter(value, 0);
+    }
+
+    public static String upperCaseCharacter(String value, int charIndex) {
         if (isNullOrEmpty(value)) return value;
+        if (!isIndexValid(value, charIndex))
+            throw new StringUtilsException("Index " + charIndex + " of string '" + value + "' is out of bounds.");
         StringBuilder builder = new StringBuilder();
-        builder.append(Character.toUpperCase(value.charAt(0)));
-        builder.append(value.substring(1));
+        builder.append(value.substring(0, charIndex));
+        builder.append(Character.toUpperCase(value.charAt(charIndex)));
+        builder.append(value.substring(charIndex + 1, value.length()));
         return builder.toString();
     }
 
-    public static String uncapitalizeFirstCharacter(String value) {
+    public static String lowerCaseCharacter(String value, int charIndex) {
         if (isNullOrEmpty(value)) return value;
+        if (!isIndexValid(value, charIndex))
+            throw new StringUtilsException("Index " + charIndex + " of string '" + value + "' is out of bounds.");
         StringBuilder builder = new StringBuilder();
-        builder.append(Character.toLowerCase(value.charAt(0)));
-        builder.append(value.substring(1));
+        builder.append(value.substring(0, charIndex));
+        builder.append(Character.toLowerCase(value.charAt(charIndex)));
+        builder.append(value.substring(charIndex + 1, value.length()));
         return builder.toString();
     }
 
@@ -107,6 +121,16 @@ public class StringUtils {
 
     public static boolean isNullOrEmpty(String value) {
         return value == null || value.isEmpty();
+    }
+
+    public static boolean isIndexValid(String value, int charIndex) {
+        return charIndex >= 0 && charIndex < value.length();
+    }
+
+    static class StringUtilsException extends RuntimeException {
+        StringUtilsException(String message) {
+            super(message);
+        }
     }
 
 }

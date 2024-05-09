@@ -6,17 +6,31 @@ import org.junit.Test;
 public class StringUtilsTest {
 
     @Test
+    public void upperCaseCharacter() {
+        Assert.assertEquals(StringUtils.upperCaseCharacter("test", 0), "Test");
+        Assert.assertEquals(StringUtils.upperCaseCharacter("test", 1), "tEst");
+        Assert.assertEquals(StringUtils.upperCaseCharacter("test", 3), "tesT");
+    }
+
+    @Test
+    public void lowerCaseCharacter() {
+        Assert.assertEquals(StringUtils.lowerCaseCharacter("Test", 0), "test");
+        Assert.assertEquals(StringUtils.lowerCaseCharacter("tEst", 1), "test");
+        Assert.assertEquals(StringUtils.lowerCaseCharacter("tesT", 3), "test");
+    }
+
+    @Test
     public void upperCaseFirstCharacter() {
-        Assert.assertEquals(StringUtils.capitalizeFirstCharacter("test"), "Test");
-        Assert.assertEquals(StringUtils.capitalizeFirstCharacter("7est"), "7est");
-        Assert.assertEquals(StringUtils.capitalizeFirstCharacter(""), "");
+        Assert.assertEquals(StringUtils.upperCaseFirstCharacter("test"), "Test");
+        Assert.assertEquals(StringUtils.upperCaseFirstCharacter("7est"), "7est");
+        Assert.assertEquals(StringUtils.upperCaseFirstCharacter(""), "");
     }
 
     @Test
     public void lowerCaseFirstCharacter() {
-        Assert.assertEquals(StringUtils.uncapitalizeFirstCharacter("Test"), "test");
-        Assert.assertEquals(StringUtils.uncapitalizeFirstCharacter("7est"), "7est");
-        Assert.assertEquals(StringUtils.uncapitalizeFirstCharacter(""), "");
+        Assert.assertEquals(StringUtils.lowerCaseFirstCharacter("Test"), "test");
+        Assert.assertEquals(StringUtils.lowerCaseFirstCharacter("7est"), "7est");
+        Assert.assertEquals(StringUtils.lowerCaseFirstCharacter(""), "");
     }
 
     @Test
@@ -45,6 +59,16 @@ public class StringUtilsTest {
     public void isNullOrEmpty() {
         Assert.assertTrue(StringUtils.isNullOrEmpty(""));
         Assert.assertTrue(StringUtils.isNullOrEmpty(null));
+        Assert.assertFalse(StringUtils.isNullOrEmpty("Test"));
+    }
+
+    @Test
+    public void isIndexValid() {
+        Assert.assertTrue(StringUtils.isIndexValid("Test", 0));
+        Assert.assertTrue(StringUtils.isIndexValid("Test", 3));
+        Assert.assertFalse(StringUtils.isIndexValid("Test", 4));
+        Assert.assertFalse(StringUtils.isIndexValid("Test", -1));
+        Assert.assertFalse(StringUtils.isIndexValid("", 0));
     }
 
     @Test
