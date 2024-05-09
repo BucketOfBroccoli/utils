@@ -1,5 +1,5 @@
-# couscous
-[![Release](https://jitpack.io/v/AreteS0ftware/couscous.svg)](https://jitpack.io/v/AreteS0ftware/couscous)
+# utils
+[![Release](https://jitpack.io/v/BroccoliBucket/utils.svg)](https://jitpack.io/v/BroccoliBucket/utils)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Versioning](https://img.shields.io/badge/semver-2.0.0-blue)](https://semver.org/)
 
@@ -7,11 +7,11 @@ A tiny collection of some common utilities for Java, with no dependencies.
 
 ### Features
 
-* [NumberUtils](https://github.com/AreteS0ftware/couscous/blob/main/src/main/java/it/aretesoftware/couscous/NumberUtils.java): contains utilities for dealing with numbers
-* [StringUtils](https://github.com/AreteS0ftware/couscous/blob/main/src/main/java/it/aretesoftware/couscous/StringUtils.java): contains utilities for dealing with strings
+* [NumberUtils](https://github.com/BroccoliBucket/couscous/blob/main/src/main/java/it/aretesoftware/couscous/NumberUtils.java): contains utilities for dealing with numbers
+* [StringUtils](https://github.com/BroccoliBucket/couscous/blob/main/src/main/java/it/aretesoftware/couscous/StringUtils.java): contains utilities for dealing with strings
 
 ### Install
-couscous is available via JitPack. Make sure you have JitPack declared as a repository in your root <code>build.gradle</code> file:
+utils is available via JitPack. Make sure you have JitPack declared as a repository in your root <code>build.gradle</code> file:
 
 ```
 allprojects {
@@ -21,12 +21,12 @@ allprojects {
     }
 }
 ```
-Then add gdx-quadtree as dependency in your core project:
+Then add utils as dependency in your core project:
 ```
 project(":core") {
     dependencies {
     	// ...
-        implementation 'com.github.AreteS0ftware:couscous:1.1.0'
+        implementation 'com.github.BroccoliBucket:utils:2.0.0'
     }
 }
 ```
@@ -34,7 +34,7 @@ project(":core") {
 <hr>
 
 ### Contact
-* This project is maintained by Arete
+* This project is maintained by BroccoliBucket (Arete)
 * https://aretesoftware.it/
 * aretedev (at) protonmail.com
 
