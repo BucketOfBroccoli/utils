@@ -1,4 +1,4 @@
-package it.aretesoftware.couscous;
+package it.aretesoftware.utils;
 
 /**
  * Various methods for handling numbers.

@@ -7,8 +7,8 @@ A tiny collection of some common utilities for Java, with no dependencies.
 
 ### Features
 
-* [NumberUtils](https://github.com/BroccoliBucket/couscous/blob/main/src/main/java/it/aretesoftware/couscous/NumberUtils.java): contains utilities for dealing with numbers
-* [StringUtils](https://github.com/BroccoliBucket/couscous/blob/main/src/main/java/it/aretesoftware/couscous/StringUtils.java): contains utilities for dealing with strings
+* [NumberUtils](https://github.com/BroccoliBucket/utils/blob/main/src/main/java/it/aretesoftware/utils/NumberUtils.java): contains utilities for dealing with numbers
+* [StringUtils](https://github.com/BroccoliBucket/utils/blob/main/src/main/java/it/aretesoftware/utils/StringUtils.java): contains utilities for dealing with strings
 
 ### Install
 utils is available via JitPack. Make sure you have JitPack declared as a repository in your root <code>build.gradle</code> file:

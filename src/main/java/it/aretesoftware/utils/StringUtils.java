@@ -1,4 +1,4 @@
-package it.aretesoftware.couscous;
+package it.aretesoftware.utils;
 
 import java.util.Arrays;
 import java.util.Iterator;

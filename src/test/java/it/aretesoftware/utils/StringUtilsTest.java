@@ -1,4 +1,4 @@
-package it.aretesoftware.couscous;
+package it.aretesoftware.utils;
 
 import org.junit.Assert;
 import org.junit.Test;
