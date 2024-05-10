@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 /**
  * Various methods for handling strings.
- * @author Arete */
+ * @author BucketOfBroccoli */
 public class StringUtils {
 
     private StringUtils() {

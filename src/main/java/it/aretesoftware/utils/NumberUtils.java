@@ -2,7 +2,7 @@ package it.aretesoftware.utils;
 
 /**
  * Various methods for handling numbers.
- * @author Arete */
+ * @author BucketOfBroccoli */
 public class NumberUtils {
 
     private NumberUtils() {
