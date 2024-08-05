@@ -21,7 +21,12 @@ public class StringUtils {
     }
 
     public static String upperCaseCharacter(String value, int charIndex) {
-        if (isNullOrEmpty(value)) return value;
+        if (value == null) {
+            throw new StringUtilsException("String is null.");
+        }
+        else if (value.isEmpty()) {
+            return value;
+        }
         if (!isIndexValid(value, charIndex))
             throw new StringUtilsException("Index " + charIndex + " of string '" + value + "' is out of bounds.");
         StringBuilder builder = new StringBuilder();
@@ -32,7 +37,12 @@ public class StringUtils {
     }
 
     public static String lowerCaseCharacter(String value, int charIndex) {
-        if (isNullOrEmpty(value)) return value;
+        if (value == null) {
+            throw new StringUtilsException("String is null.");
+        }
+        else if (value.isEmpty()) {
+            return value;
+        }
         if (!isIndexValid(value, charIndex))
             throw new StringUtilsException("Index " + charIndex + " of string '" + value + "' is out of bounds.");
         StringBuilder builder = new StringBuilder();
@@ -88,10 +98,10 @@ public class StringUtils {
 
     public static String join(Iterable<String> pieces, String separator) {
         StringBuilder buffer = new StringBuilder();
-        Iterator<String> iter = pieces.iterator();
-        while (iter.hasNext()) {
-            buffer.append(iter.next());
-            if (iter.hasNext()) {
+        Iterator<String> iterator = pieces.iterator();
+        while (iterator.hasNext()) {
+            buffer.append(iterator.next());
+            if (iterator.hasNext()) {
                 buffer.append(separator);
             }
         }
@@ -124,6 +134,7 @@ public class StringUtils {
     }
 
     public static boolean isIndexValid(String value, int charIndex) {
+        if (value == null) throw new StringUtilsException("String is null.");
         return charIndex >= 0 && charIndex < value.length();
     }
 

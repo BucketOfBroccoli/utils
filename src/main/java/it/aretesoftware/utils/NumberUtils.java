@@ -37,7 +37,7 @@ public class NumberUtils {
 
     private static float getRoundingDivisor(int places) {
         if (places < 0) {
-            throw new NumberUtilsException("Number of decimal places for rounding off a number must be positive.");
+            throw new NumberUtilsException("Number of decimal places for rounding off a number must be 0 or positive.");
         }
         else if (places == 0) {
             return 1;
@@ -50,25 +50,28 @@ public class NumberUtils {
     }
 
     public static int roundNearest(float value, int nearest) {
+        if (nearest <= 0) throw new NumberUtilsException("Nearest number cannot be 0 or negative .");
         boolean negative = value < 0;
         if (negative) nearest = -nearest;
         return Math.round(value / nearest) * nearest;
     }
 
     public static int floorNearest(float value, int nearest) {
+        if (nearest <= 0) throw new NumberUtilsException("Nearest number cannot be 0 or negative.");
         boolean negative = value < 0;
         if (negative) nearest = -nearest;
         return (int) (Math.floor(value / nearest) * nearest);
     }
 
     public static int ceilNearest(float value, int nearest) {
+        if (nearest <= 0) throw new NumberUtilsException("Nearest number cannot be 0 or negative.");
         boolean negative = value < 0;
         if (negative) nearest = -nearest;
         return (int) (Math.ceil(value / nearest) * nearest);
     }
 
     public static int max(int... array) {
-        checkConditions(array);
+        if (ArrayUtils.isNullOrEmpty(array)) throw new NumberUtilsException("Array is null or empty.");
         int max = Integer.MIN_VALUE;
         for (int value : array) {
             if (value > max) {
@@ -79,7 +82,7 @@ public class NumberUtils {
     }
 
     public static int min(int... array) {
-        checkConditions(array);
+        if (ArrayUtils.isNullOrEmpty(array)) throw new NumberUtilsException("Array is null or empty.");
         int min = Integer.MAX_VALUE;
         for (int value : array) {
             if (value < min) {
@@ -90,7 +93,7 @@ public class NumberUtils {
     }
 
     public static float max(float... array) {
-        checkConditions(array);
+        if (ArrayUtils.isNullOrEmpty(array)) throw new NumberUtilsException("Array is null or empty.");
         float max = Float.MIN_VALUE;
         for (float value : array) {
             if (value > max) {
@@ -101,7 +104,7 @@ public class NumberUtils {
     }
 
     public static float min(float... array) {
-        checkConditions(array);
+        if (ArrayUtils.isNullOrEmpty(array)) throw new NumberUtilsException("Array is null or empty.");
         float min = Float.MAX_VALUE;
         for (float value : array) {
             if (value < min) {
@@ -111,25 +114,8 @@ public class NumberUtils {
         return min;
     }
 
-    private static void checkConditions(int... array) {
-        if (array == null) {
-            throw new NumberUtilsException("array is null.");
-        }
-        else if (array.length == 0) {
-            throw new NumberUtilsException("array is empty.");
-        }
-    }
-
-    private static void checkConditions(float... array) {
-        if (array == null) {
-            throw new NumberUtilsException("array is null.");
-        }
-        else if (array.length == 0) {
-            throw new NumberUtilsException("array is empty.");
-        }
-    }
-
     public static float average(int... array) {
+        if (ArrayUtils.isNullOrEmpty(array)) throw new NumberUtilsException("Array is null or empty.");
         float sum = 0;
         for (int value : array) {
             sum += value;
@@ -138,6 +124,7 @@ public class NumberUtils {
     }
 
     public static float average(float... array) {
+        if (ArrayUtils.isNullOrEmpty(array)) throw new NumberUtilsException("Array is null or empty.");
         float sum = 0;
         for (float value : array) {
             sum += value;
@@ -166,7 +153,7 @@ public class NumberUtils {
     }
 
     private static NumberType getNumberType(String value) {
-        if (value == null || value.isEmpty()) {
+        if (StringUtils.isNullOrEmpty(value)) {
             return NumberType.nan;
         }
 
