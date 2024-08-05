@@ -232,6 +232,34 @@ public class NumberUtilsTest {
     }
 
     @Test
+    public void roundNearest() {
+        Assert.assertEquals(-10, NumberUtils.roundNearest(-7.5f, 5));
+        Assert.assertEquals(-5, NumberUtils.roundNearest(-2.5f, 5));
+        Assert.assertEquals(0, NumberUtils.roundNearest(-2.49f, 5));
+        Assert.assertEquals(0, NumberUtils.roundNearest(2.49f, 5));
+        Assert.assertEquals(5, NumberUtils.roundNearest(2.5f, 5));
+        Assert.assertEquals(10, NumberUtils.roundNearest(7.5f, 5));
+    }
+
+    @Test
+    public void floorNearest() {
+        Assert.assertEquals(-10, NumberUtils.floorNearest(-14.99f, 5));
+        Assert.assertEquals(-5, NumberUtils.floorNearest(-9.99f, 5));
+        Assert.assertEquals(0, NumberUtils.floorNearest(-4.99f, 5));
+        Assert.assertEquals(0, NumberUtils.floorNearest(4.99f, 5));
+        Assert.assertEquals(5, NumberUtils.floorNearest(9.99f, 5));
+        Assert.assertEquals(10, NumberUtils.floorNearest(14.99f, 5));
+    }
+
+    @Test
+    public void ceilNearest() {
+        Assert.assertEquals(-10, NumberUtils.ceilNearest(-5.01f, 5));
+        Assert.assertEquals(-5, NumberUtils.ceilNearest(-0.01f, 5));
+        Assert.assertEquals(5, NumberUtils.ceilNearest(0.01f, 5));
+        Assert.assertEquals(10, NumberUtils.ceilNearest(5.01f, 5));
+    }
+
+    @Test
     @SuppressWarnings("All")
     public void min() {
         //int

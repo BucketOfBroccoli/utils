@@ -49,6 +49,24 @@ public class NumberUtils {
         }
     }
 
+    public static int roundNearest(float value, int nearest) {
+        boolean negative = value < 0;
+        if (negative) nearest = -nearest;
+        return Math.round(value / nearest) * nearest;
+    }
+
+    public static int floorNearest(float value, int nearest) {
+        boolean negative = value < 0;
+        if (negative) nearest = -nearest;
+        return (int) (Math.floor(value / nearest) * nearest);
+    }
+
+    public static int ceilNearest(float value, int nearest) {
+        boolean negative = value < 0;
+        if (negative) nearest = -nearest;
+        return (int) (Math.ceil(value / nearest) * nearest);
+    }
+
     public static int max(int... array) {
         checkConditions(array);
         int max = Integer.MIN_VALUE;
@@ -93,22 +111,6 @@ public class NumberUtils {
         return min;
     }
 
-    public static float average(int... array) {
-        float sum = 0;
-        for (int value : array) {
-            sum += value;
-        }
-        return sum / array.length;
-    }
-
-    public static float average(float... array) {
-        float sum = 0;
-        for (float value : array) {
-            sum += value;
-        }
-        return sum / array.length;
-    }
-
     private static void checkConditions(int... array) {
         if (array == null) {
             throw new NumberUtilsException("array is null.");
@@ -125,6 +127,22 @@ public class NumberUtils {
         else if (array.length == 0) {
             throw new NumberUtilsException("array is empty.");
         }
+    }
+
+    public static float average(int... array) {
+        float sum = 0;
+        for (int value : array) {
+            sum += value;
+        }
+        return sum / array.length;
+    }
+
+    public static float average(float... array) {
+        float sum = 0;
+        for (float value : array) {
+            sum += value;
+        }
+        return sum / array.length;
     }
 
     public static boolean isNumber(String value) {
