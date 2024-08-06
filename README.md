@@ -9,6 +9,8 @@ A tiny collection of some common utilities for Java, with no dependencies.
 
 * [NumberUtils](https://github.com/BucketOfBroccoli/utils/blob/main/src/main/java/it/aretesoftware/utils/NumberUtils.java): contains utilities for dealing with numbers
 * [StringUtils](https://github.com/BucketOfBroccoli/utils/blob/main/src/main/java/it/aretesoftware/utils/StringUtils.java): contains utilities for dealing with strings
+* [ArrayUtils](https://github.com/BucketOfBroccoli/utils/blob/main/src/main/java/it/aretesoftware/utils/ArrayUtils.java): contains utilities for dealing with arrays
+
 
 ### Install
 utils is available via JitPack. Make sure you have JitPack declared as a repository in your root <code>build.gradle</code> file:
@@ -26,7 +28,7 @@ Then add utils as dependency in your core project:
 project(":core") {
     dependencies {
     	// ...
-        implementation 'com.github.BucketOfBroccoli:utils:2.0.0'
+        implementation 'com.github.BucketOfBroccoli:utils:2.1.0'
     }
 }
 ```
